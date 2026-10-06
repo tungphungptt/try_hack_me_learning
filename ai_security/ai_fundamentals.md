@@ -31,3 +31,24 @@ Machine Learning:
 
 - Consider a neural network tasked with recognising a handwritten digit. Early hidden layers detect simple features like edges and curves. Deeper layers combine those features into more complex patterns. A straight vertical line increases the likelihood of a 1 or 7. Curves push probability toward 3, 8, or 0. The output layer has one node per possible digit, and whichever scores highest wins. When a network has more than three layers, it qualifies as a Deep Learning (DL) algorithm, hence the name
 - The key distinction between ML and DL is that DL doesn't require labelled data. Where supervised ML needs a human to attach correct answers to training examples, a DL algorithm can take raw, unstructured input and determine its own features. No human intervention means larger datasets can be processed, which is why DL is sometimes described as scalable ML. The explosion of DL over the last decade is largely down to one thing: the mass digitisation of information suddenly gave these algorithms the volume of data they needed to realise their potential.
+
+<img width="540" height="450" alt="image" src="https://github.com/user-attachments/assets/7df06b9c-3430-4653-af64-5a9eb43bd24e" />
+
+## Large Language Models 
+- Packaged Intelligence: 
+    - So far in this room we've traced AI from its origins as a field of research, through the emergence of ML, into the development of neural networks and DL. All of that brings us to the technology that kicked off the AI boom we're currently living through: Large Language Models.
+    - If you've heard of ChatGPT, you already know what the moment felt like. Its ability to generate fluent, human-like text in response to a natural language query triggered discussions across news, politics, education, and industry simultaneously. Something had shifted. We were in a new era, and LLMs were the reason why. But how do they actually work?
+  
+<img width="504" height="282" alt="image" src="https://github.com/user-attachments/assets/fc721cbf-d747-417e-b9fb-f0b8afaec491" />
+
+- What are LLMs and how do they work?
+    - Large Language Models are deep learning-based AI models that process and generate text by predicting the next word in a sequence. When you send a message to a chatbot, what's happening in the background is a rapid series of predictions about what word should come next in the response, repeated until the reply is complete. The key question is: how does the model get good enough at those predictions to be useful?
+    - LLMs are first trained in a pre-training phase, where they process enormous volumes of text. GPT-3 alone was trained on data that would take a human 2,600 years to read nonstop. Instead of labelled data, LLMs rely on billions of parameters, numerical values that function like puzzle pieces, collectively encoding the model's understanding of language. During pre-training, the model is fed a piece of text with the final word removed and asked to predict it. Its initial guess is random. That guess is then compared against the correct answer, and the parameters are adjusted via an algorithm called backpropagation to make the right answer more likely next time. Repeat this process trillions of times across a vast dataset and the model develops a remarkably accurate sense of how language works.
+
+<img width="2044" height="724" alt="image" src="https://github.com/user-attachments/assets/5d88617e-7e08-4e2e-8999-4a013b48622c" />
+
+    - The scale of pre-training is only possible because of advances in hardware (specifically GPUs enabling parallel processing) and a specific type of neural network called transformer neural networks. Introduced in Google's 2017 paper Attention is All You Need, transformers enabled parallel text processing instead of sequential word-by-word analysis. The key innovation was attention: the ability to assign different levels of importance to different words depending on context. Take this sentence: "The bank approved the loan because it was financially stable."
+    - A model without attention might struggle to resolve what "it" refers to. Transformers calculate attention scores across the whole sentence, correctly linking "it" back to "the bank" rather than "the loan."
+
+<img width="822" height="800" alt="image" src="https://github.com/user-attachments/assets/eddb7cba-90fa-42e5-87a6-4df64c878434" />
+
