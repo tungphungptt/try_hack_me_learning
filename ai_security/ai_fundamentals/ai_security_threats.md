@@ -48,3 +48,32 @@ Here are four areas where AI has a direct and measurable impact on defensive sec
 - Summarisation: Security incidents generate a huge volume of artefacts: logs, reports, alerts, threat intelligence. Reading and synthesising all of that takes time that defenders often don't have. LLMs can summarise incident reports, extract the key findings from lengthy documents, and draw correlations between events that a human analyst under pressure might miss entirely. That time saving compounds quickly across a busy SOC.
 
 - Investigation: When something goes wrong, working out what happened and why is a core security function. LLMs can be fed raw logs and asked to explain what they show, suggest queries to run, and help triage an active incident in natural language. They're also useful for threat hunting, which relies heavily on imagination: thinking up attack scenarios an adversary might use that defenders haven't considered yet. AI can surface possibilities that simply wouldn't have occurred to a human analyst working alone.
+
+# Securing AI 
+## The New Frontier
+Here's what good AI security hygiene looks like in practice.
+
+- Securing AI Models: Many of the model vulnerabilities discussed earlier, prompt injection, privacy leakage, model theft, share a common thread: they involve an attacker getting access to something they shouldn't. The first line of defence is controlling who can interact with your AI systems in the first place. Implementing strong authentication, defining strict access permissions, and using RBAC (Role-Based Access Control) and MFA (Multi-Factor Authentication) significantly reduces the attack surface at the model interaction layer.
+
+- Privacy Protection: Training data frequently contains sensitive information, whether that was intentional or not. Patient records, internal communications, and customer data can all end up baked into model weights if the training pipeline isn't properly governed. Training data should be treated with the same care as any other sensitive data asset: audited, minimised, and encrypted.
+
+<img width="1032" height="390" alt="image" src="https://github.com/user-attachments/assets/9a774977-0171-476b-9c46-2735d09d9680" />
+
+- AI Security Standards: Frameworks exist specifically to guide the secure development, deployment, and maintenance of AI systems. ISO/IEC 27090, for example, provides guidance on identifying and mitigating security threats specific to AI. Incorporating established standards throughout the AI lifecycle means organisations can get ahead of risks rather than discovering them in production.
+
+- Model Monitoring: Monitoring a deployed model isn't just about catching performance degradation or flagging when retraining is needed. It's a security function. Unexpected behaviour, anomalous outputs, and statistical drift can all be indicators of an active attack. Explainability tools like SHAP and LIME help make model behaviour more interpretable, giving security teams visibility into what the model is actually doing rather than treating it as a black box.
+
+# Practical
+Flag : THM{4l_fund4m3nt4ls_l1c3ns3}
+
+<img width="730" height="878" alt="image" src="https://github.com/user-attachments/assets/c8462164-9198-4643-a38c-dcac4346875d" />
+
+# Conclusion
+- Artificial Intelligence is the overarching field concerned with enabling machines to simulate human intelligence, with roots going back to the 1950s.
+- Machine Learning is a subfield of AI in which models learn from data through a structured lifecycle, using algorithms that fall into four categories: supervised, unsupervised, semi-supervised, and reinforcement learning.
+- Neural networks replicate the structure of the human brain through layers of weighted nodes, enabling increasingly complex feature extraction. Networks with more than three layers qualify as Deep Learning.
+- Large Language Models are built on transformer neural networks, trained on vast datasets through pre-training and refined through RLHF, predicting the next word in a sequence to generate human-like text.
+- AI introduces a new category of model-specific vulnerabilities including prompt injection, data poisoning, model theft, privacy leakage, and model drift, mapped by the MITRE ATLAS framework.
+- Attackers are using AI to enhance existing techniques, making malware generation, deepfakes, and phishing faster, cheaper, and harder to detect.
+- Defenders can use AI to enhance analysis, prediction, summarisation, and investigation, with IBM data(opens in new tab) showing AI-assisted teams contain breaches 108 days faster and save an average of $2.2 million per incident.
+- AI adoption needs to be done securely from day one, with proper access controls, training data governance, adherence to standards like ISO/IEC 27090, and ongoing model monitoring.
