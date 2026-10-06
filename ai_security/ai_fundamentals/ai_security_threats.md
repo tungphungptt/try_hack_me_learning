@@ -39,3 +39,12 @@ The five key vulnerabilities in AI models that every security practitioner shoul
 
 # Defensive AI
 ## Harness the Power
+Here are four areas where AI has a direct and measurable impact on defensive security operations.
+
+- Analysis: A huge proportion of security work is pattern recognition at scale: finding anomalies in network traffic, spotting unusual authentication behaviour, identifying suspicious process activity in logs. This is exactly what ML was built for. Products like Microsoft Defender for Endpoint and Splunk already leverage AI to analyse input data and surface anomalies at speeds no human analyst could match. The 108-day improvement in breach detection time starts to make sense when you consider what AI can do to the analysis problem.
+
+- Prediction: AI models trained on historical attack data can begin to predict future threats before they fully materialise. Consider phishing, one of the attack types covered in the previous task. The same AI capabilities that make phishing emails harder to spot can be turned around and used to detect them. A model trained on vast volumes of phishing examples can identify patterns in email content that a human reviewer would miss, and once it's made a prediction, it can automate the response, blocking the email before it ever reaches a user's inbox.
+
+- Summarisation: Security incidents generate a huge volume of artefacts: logs, reports, alerts, threat intelligence. Reading and synthesising all of that takes time that defenders often don't have. LLMs can summarise incident reports, extract the key findings from lengthy documents, and draw correlations between events that a human analyst under pressure might miss entirely. That time saving compounds quickly across a busy SOC.
+
+- Investigation: When something goes wrong, working out what happened and why is a core security function. LLMs can be fed raw logs and asked to explain what they show, suggest queries to run, and help triage an active incident in natural language. They're also useful for threat hunting, which relies heavily on imagination: thinking up attack scenarios an adversary might use that defenders haven't considered yet. AI can surface possibilities that simply wouldn't have occurred to a human analyst working alone.
