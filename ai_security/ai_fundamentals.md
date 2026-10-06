@@ -72,7 +72,7 @@ Input layer --> Hidden layer --> Output layer
 
 - Hidden node 3 : Third hidden node — checks for rounded or curved components --> Curve Detection
 
-## Practice : 
+## Practice 
 Flag : THM{y0u_tr41n3d_th3_n3tw0rk}
 
 ## Conclusion 
