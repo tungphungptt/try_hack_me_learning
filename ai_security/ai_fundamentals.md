@@ -39,7 +39,7 @@ Machine Learning:
     - So far in this room we've traced AI from its origins as a field of research, through the emergence of ML, into the development of neural networks and DL. All of that brings us to the technology that kicked off the AI boom we're currently living through: Large Language Models.
     - If you've heard of ChatGPT, you already know what the moment felt like. Its ability to generate fluent, human-like text in response to a natural language query triggered discussions across news, politics, education, and industry simultaneously. Something had shifted. We were in a new era, and LLMs were the reason why. But how do they actually work?
   
-<img width="504" height="282" alt="image" src="https://github.com/user-attachments/assets/fc721cbf-d747-417e-b9fb-f0b8afaec491" />
+    <img width="504" height="282" alt="image" src="https://github.com/user-attachments/assets/fc721cbf-d747-417e-b9fb-f0b8afaec491" />
 
 - What are LLMs and how do they work?
     - Large Language Models are deep learning-based AI models that process and generate text by predicting the next word in a sequence. When you send a message to a chatbot, what's happening in the background is a rapid series of predictions about what word should come next in the response, repeated until the reply is complete. The key question is: how does the model get good enough at those predictions to be useful?
