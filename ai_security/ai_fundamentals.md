@@ -45,10 +45,18 @@ Machine Learning:
     - Large Language Models are deep learning-based AI models that process and generate text by predicting the next word in a sequence. When you send a message to a chatbot, what's happening in the background is a rapid series of predictions about what word should come next in the response, repeated until the reply is complete. The key question is: how does the model get good enough at those predictions to be useful?
     - LLMs are first trained in a pre-training phase, where they process enormous volumes of text. GPT-3 alone was trained on data that would take a human 2,600 years to read nonstop. Instead of labelled data, LLMs rely on billions of parameters, numerical values that function like puzzle pieces, collectively encoding the model's understanding of language. During pre-training, the model is fed a piece of text with the final word removed and asked to predict it. Its initial guess is random. That guess is then compared against the correct answer, and the parameters are adjusted via an algorithm called backpropagation to make the right answer more likely next time. Repeat this process trillions of times across a vast dataset and the model develops a remarkably accurate sense of how language works.
 
+
     <img width="2044" height="724" alt="image" src="https://github.com/user-attachments/assets/5d88617e-7e08-4e2e-8999-4a013b48622c" />
 
      - The scale of pre-training is only possible because of advances in hardware (specifically GPUs enabling parallel processing) and a specific type of neural network called transformer neural networks. Introduced in Google's 2017 paper Attention is All You Need, transformers enabled parallel text processing instead of sequential word-by-word analysis. The key innovation was attention: the ability to assign different levels of importance to different words depending on context. Take this sentence: "The bank approved the loan because it was financially stable."
     - A model without attention might struggle to resolve what "it" refers to. Transformers calculate attention scores across the whole sentence, correctly linking "it" back to "the bank" rather than "the loan."
 
+
     <img width="822" height="800" alt="image" src="https://github.com/user-attachments/assets/eddb7cba-90fa-42e5-87a6-4df64c878434" />
 
+    - After pre-training, humans come back into the loop in a process called RLHF (Reinforcement Learning from Human Feedback). Reviewers evaluate model outputs, flag anything unhelpful or problematic, and the parameters are adjusted accordingly. This is the step that shapes a raw language model into something usable as a chatbot or assistant.
+    - LLMs power generative AI products like ChatGPT, LLaMA, and DeepSeek, which can create original text-based content in response to user prompts. Generative AI as a whole extends further still, enabling the creation of images, audio, video, and more. The AI boom didn't happen overnight. It's the product of decades of incremental research finally converging at the right moment. The diagram below shows how everything we've covered connects:
+
+    <img width="814" height="1472" alt="image" src="https://github.com/user-attachments/assets/8f7043cc-057f-4370-8846-6be3ff3ae4fb" />
+
+  --> Artificial Intelligence is the overarching field. Machine Learning is a subfield of AI that enables learning from data. Deep Learning is a subfield of ML that uses neural networks to process data at scale without human intervention. Large Language Models are advanced DL models built on transformer neural networks, designed to understand and generate human-like text.
