@@ -60,3 +60,17 @@ Machine Learning:
     <img width="814" height="1472" alt="image" src="https://github.com/user-attachments/assets/8f7043cc-057f-4370-8846-6be3ff3ae4fb" />
 
   --> Artificial Intelligence is the overarching field. Machine Learning is a subfield of AI that enables learning from data. Deep Learning is a subfield of ML that uses neural networks to process data at scale without human intervention. Large Language Models are advanced DL models built on transformer neural networks, designed to understand and generate human-like text.
+
+## NEURON-1
+Input layer --> Hidden layer --> Output layer 
+
+<img width="822" height="618" alt="image" src="https://github.com/user-attachments/assets/3a050bfa-d0d1-459b-8f17-993f003e4a78" />
+
+- Hidden node 1 : First hidden node — processes raw edge information from the input pixels --> Edge Detection
+
+- Hidden node 2 : Second hidden node — looks at the overall arrangement and structure --> Pattern Matching
+
+- Hidden node 3 : Third hidden node — checks for rounded or curved components --> Curve Detection
+
+## Practice : 
+Flag : THM{y0u_tr41n3d_th3_n3tw0rk}
