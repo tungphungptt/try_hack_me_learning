@@ -7,3 +7,15 @@ Machine Learning:
 <img width="582" height="342" alt="image" src="https://github.com/user-attachments/assets/a9258070-d92b-4987-bace-e24418cebd67" />
 
 - One term worth flagging here is overfitting. This is when a model becomes so familiar with its training data that it fails to generalise to new, unseen data. Rather than learning the underlying pattern, it essentially memorises the examples it was trained on. You'll hear this term come up again later in the path, particularly in a security context.
+
+
+## Machine Learning Algorithms
+- The Brains of the Operation: ML algorithms are the mathematical methods used to learn patterns from data. The trained outputs they produce are what we call ML models. Every algorithm follows the same basic structure: a decision process that makes predictions based on input data, an error function that evaluates how far off those predictions were, and a model optimisation process that adjusts the algorithm to do better next time. This loop repeats until the model reaches a satisfactory level of performance
+
+<img width="488" height="238" alt="image" src="https://github.com/user-attachments/assets/0df4bbbc-d02e-4124-8847-ea1d50b1e748" />
+
+- ML algorithms fall into four main categories depending on how they learn and what kind of data they work with.
+    - Supervised learning trains on labelled data, meaning every training example comes with the correct answer already attached. The model learns to map inputs to outputs based on those examples. Predicting house prices or classifying whether an email is spam are both supervised learning problems.
+    - Unsupervised learning works with unlabelled data and has to find its own structure. Rather than being told what the answer is, the algorithm identifies patterns, clusters, and relationships in the data on its own. It's useful for things like grouping customers by behaviour or detecting anomalies in network traffic.
+    - Semi-supervised learning sits between the two. It uses a small portion of labelled data to guide the learning process across a much larger pool of unlabelled data. This is practical in situations where labelling data is expensive or time-consuming.
+    - Reinforcement learning works differently from all three. Rather than learning from a fixed dataset, an agent learns by taking actions in an environment and receiving rewards or penalties based on the outcomes. Over time, it refines its behaviour to maximise reward. It's the approach behind things like game-playing AI and autonomous systems.
