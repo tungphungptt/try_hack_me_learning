@@ -34,7 +34,7 @@ Data provenance is the ability to answer three questions about any piece of trai
 
 - The software security world has been here before. SolarWinds taught the industry that you can't trust a compiled binary if you don't know what went into it, which is exactly why software bills of materials (SBOMs) became standard practice. The AI equivalent is the ML-BOM: a documented inventory of dataset sources, licenses, PII categories, and filtering decisions. Adoption is still early, and most organisations deploying third-party models today have nothing close to one
 
-## PII in the Pipeline
+## PII (Personally Identifiable Information) in the Pipeline
 - One of the most direct consequences of undocumented, large-scale web scraping is that personally identifiable information ends up baked into model weights. Once it's there, it's very difficult to remove. Medical records, personal email threads, forum posts about health conditions or political views: all of it gets swept up if it was publicly accessible at crawl time. The EU's GDPR explicitly requires data minimisation (collect only what's necessary). This sits in direct tension with the "more data is always better" logic driving pre-training.
 
 <img width="538" height="418" alt="image" src="https://github.com/user-attachments/assets/f2af81e5-94b4-4499-8f01-73282f9e9fe2" />
@@ -43,3 +43,19 @@ Data provenance is the ability to answer three questions about any piece of trai
 
 ## A Model Engineer
 - A model's behaviour is a direct product of what it was trained on. If that data was scraped without audit, contaminated with PII, or manipulated upstream, those characteristics become part of the model, and there's no reliable way for the organisation deploying it to know. The data supply chain is as real and as exploitable as a software supply chain. For organisations right now, it's almost entirely invisible.
+
+
+## Key Takeaway (Note)
+### AI Data Supply Chain Risks
+
+- LLMs are trained on massive datasets from web scraping, licensed datasets, synthetic data, and internal corpora.
+- Common Crawl is one of the most widely used training data sources.
+- Data provenance answers:
+  1. Where did the data come from?
+  2. When was it collected?
+  3. Has it been modified?
+- Many datasets lack proper licensing and provenance information.
+- ML-BOM (Machine Learning Bill of Materials) helps track dataset sources, licenses, PII, and filtering decisions.
+- Public web data may contain sensitive information and PII.
+- Truffle Security found ~12,000 live API keys and passwords in Common Crawl.
+- Risks include data poisoning, privacy leakage, compliance violations, and model memorization.
