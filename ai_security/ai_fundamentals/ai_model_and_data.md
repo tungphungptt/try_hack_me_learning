@@ -43,5 +43,3 @@ Data provenance is the ability to answer three questions about any piece of trai
 
 ## A Model Engineer
 - A model's behaviour is a direct product of what it was trained on. If that data was scraped without audit, contaminated with PII, or manipulated upstream, those characteristics become part of the model, and there's no reliable way for the organisation deploying it to know. The data supply chain is as real and as exploitable as a software supply chain. For organisations right now, it's almost entirely invisible.
-
-<img width="538" height="418" alt="image" src="https://github.com/user-attachments/assets/c2474534-42be-44c5-b686-bf0d84517161" />
