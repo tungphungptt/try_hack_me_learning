@@ -87,5 +87,81 @@ Once a model is trained, it often goes through compression steps before deployme
 
 <img width="1108" height="732" alt="image" src="https://github.com/user-attachments/assets/18bafde2-30c9-4eda-8597-f4fec12a432c" />
 
-= The security trade-off, however, is that the integrity of the training process becomes much harder to verify. In a centralised setup, the organisation that trains the model controls the data. In a federated setup, participants can submit poisoned local updates (subtly manipulated gradients designed to skew the global model's behaviour), and these can be very difficult to detect at the aggregation stage. The question shifts from "who controls the data?" to "who controls the aggregation, and can any participant corrupt it?"
+- The security trade-off, however, is that the integrity of the training process becomes much harder to verify. In a centralised setup, the organisation that trains the model controls the data. In a federated setup, participants can submit poisoned local updates (subtly manipulated gradients designed to skew the global model's behaviour), and these can be very difficult to detect at the aggregation stage. The question shifts from "who controls the data?" to "who controls the aggregation, and can any participant corrupt it?"
+
 --> Federated learning is therefore an interesting case study in security trade-offs: it solves one trust problem by distributing control, but in doing so creates a different one.
+
+# The Inheritance Problem 
+Training an LLM from scratch means assembling trillions of tokens of data, acquiring the compute infrastructure to process it, and running a training job that can cost tens of millions of dollars. For most organisations, that's not a realistic option. Instead, the dominant model for AI development today is to start with someone else's work.
+
+## Pre-Trained Models & Fine-Tuning
+- A pre-trained model is one that has already been trained on a large, general-purpose dataset (the kind of web-scale corpus discussed in Task 2). These base models learn broad language understanding: grammar, facts, reasoning patterns, and world knowledge. They're produced by a small number of well-resourced organisations and then made available for others to build on, either through open weights (like Meta's LLaMA family) or through API access (like OpenAI's GPT series).
+- Fine-tuning is the process of continuing to train one of these pre-trained models on a smaller, task-specific dataset. A healthcare company might fine-tune a base model trained on clinical documentation to improve its understanding of medical terminology. A law firm might fine-tune on case law. The result is a model with the broad capabilities of the base model, now specialised for a particular domain or use case.
+
+<img width="784" height="426" alt="image" src="https://github.com/user-attachments/assets/dba578b1-618e-41f6-b2ae-2da10f6196eb" />
+
+**What fine-tuning changes**: the model's task-specific behaviour, tone, and domain knowledge.
+**What fine-tuning does not change**: the base model weights (the billions of parameters shaped by pre-training on data the fine-tuning organisation never saw and almost certainly never audited).
+
+## The Inheritance Problem 
+<img width="640" height="436" alt="image" src="https://github.com/user-attachments/assets/03899de3-4d46-47f0-acbb-d719bf251de7" />
+
+This shows up in three concrete ways:
+1. Safety alignment erodes, not breaks
+- Stanford and Princeton found that the defence mechanisms of aligned LLMs can be compromised by fine-tuning on as few as 10 adversarially crafted examples (at a cost of under $0.20). Even benign fine-tuning on legitimate data degraded safety as a side effect.
+
+- Think of safety alignment like a well-worn path through a forest. The model has been trained to follow this safe path when generating responses. Fine-tuning is like adding new paths through the same forest. Even if those new paths are legitimate (like teaching medical terminology), they can gradually obscure the original safe path. The model hasn't forgotten how to be unsafe; the probability weights have just shifted, making unsafe responses more likely again. The defence mechanisms don't snap; they wear down.
+
+2. Specialisation increases attack surface
+- Cisco found that fine-tuned models are measurably more susceptible to prompt injection than the base models they were fine-tuned on. The reason is structural: fine-tuning narrows the focus, reducing resilience to unexpected tokens. Think of it like this: a model fine-tuned on financial records gets better at financial reasoning, but also becomes more responsive to an attacker who frames their prompt in financial terms.
+
+3.  Version matters, and it's rarely tracked
+- Fine-tuning always targets a specific checkpoint of a base model. If that checkpoint later turned out to contain a backdoor or problematic training data, every derivative inherits it, regardless of whether anyone downstream was told. Without knowing exactly which version a model was fine-tuned from, there's no way to assess that exposure after the fact.
+
+## Inheritance Tax
+When your organisation deploys a fine-tuned model, you're not deploying the fine-tuning work your team did; you're deploying the entire pre-trained base beneath it. That base was shaped by a training process you didn't control, on data you didn't audit, by an organisation whose supply chain you almost certainly haven't reviewed. Fine-tuning is powerful, but it doesn't sanitise what came before it.
+
+
+# The Black Box Problem
+- When a security team wants to audit a piece of software, they have options. Source code is readable. Even compiled binaries can be disassembled, stepped through, and reasoned about. A trained model's weights are neither. They're billions of floating-point numbers (the cumulative result of a training process), and they carry no human-readable record of how they were shaped, what data influenced them, or what behaviours they encode. You cannot open a model and find the decision that makes it behave a certain way. This is a "black box" in the truest sense.
+
+<img width="480" height="404" alt="image" src="https://github.com/user-attachments/assets/7047de4e-c532-4a3f-b3dd-1cea51bba435" />
+
+## Model Cards
+- The documentation artefact designed to address this is the model card: a structured document that accompanies a model and describes what it is, how it was built, and where it falls short. The concept was introduced by Google researchers in 2019 and has since become the closest thing the industry has to a standard transparency format.
+
+--> A well-formed model card should give you the answers to the questions you can't get by inspecting the weights themselves:
+| Section | What it should tell you |
+|---|---|
+| **Training data** | What sources were used, how they were filtered, known gaps or biases |
+| **Intended use** | What the model was designed for (and explicitly what it wasn't) |
+| **Evaluation results** | Performance metrics across different conditions and demographics |
+| **Known limitations** | Conditions under which the model is known to underperform or behave unexpectedly |
+| **Bias assessment** | Where training data or evaluation may have introduced skew |
+| **Licence** | What you're legally permitted to do with the model |
+
+
+## The Gaps
+- Model cards are often incomplete, vague, or entirely missing because creating them is voluntary for most AI use cases.
+- Lack of incentives: Organisations may avoid documenting limitations because transparency could reduce model adoption.
+- Documentation gaps: The Data Provenance Initiative audited over 1,800 datasets and found widespread documentation gaps across the AI supply chain.
+- Security risk: A missing or incomplete model card may indicate insufficient model evaluation or a decision not to disclose findings.
+- Impact on users: Without reliable documentation, downstream users cannot properly assess a model's limitations, biases, or potential security risks.
+
+--> A missing or incomplete model card is a potential security warning sign because it makes evaluating an AI model's trustworthiness and risks more difficult
+
+--> The model card is your audit trail. In the absence of one, there is no audit trail, just a blackbox anđ the hope that whoeever built it was thorough. In security, hope is not a control
+
+## Practical 
+THM{A_m0del_Stud3nt}
+
+## Conclusion
+- AI training data is drawn from poorly documented, unaudited sources, meaning most organisations have no reliable answer to where their training data came from, what it contained, or whether it was tampered with
+
+- PII and live credentials routinely end up baked into model weights through large-scale web scraping and cannot be patched out once the model is deployed
+
+- Model-building decisions such as quantisation and federated learning introduce security trade-offs that are rarely documented, meaning organisations inherit unknown behaviour modifications alongside efficiency gains
+
+- Fine-tuning a pre-trained model inherits everything beneath it: safety alignment erodes with as few as 10 adversarial examples, and fine-tuned models are measurably more susceptible to prompt injection than their base counterparts
+
+- Trained model weights are fundamentally opaque; security testing can only sample behaviour rather than audit it, and model cards (the primary transparency mechanism) remain voluntary, frequently incomplete, and sometimes absent entirely
