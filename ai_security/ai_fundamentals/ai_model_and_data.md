@@ -59,3 +59,33 @@ Data provenance is the ability to answer three questions about any piece of trai
 - Public web data may contain sensitive information and PII.
 - Truffle Security found ~12,000 live API keys and passwords in Common Crawl.
 - Risks include data poisoning, privacy leakage, compliance violations, and model memorization.
+
+# Building the Model
+## Epochs and Overfitting
+- An epoch is one complete pass of the training algorithm through the entire dataset. In practice, models are trained over many epochs. The algorithm repeatedly sees the same data, adjusting its parameters each time until it converges on accurate predictions.
+- The catch is that more epochs don't always mean a better model. Train for too long and the model stops learning general patterns and starts memorising training data specifically, a problem called overfitting. An overfit model performs well on its training data but poorly on other data. This matters for security because overfitting is one mechanism by which a model can "memorise" specific details from its training data, including sensitive ones, making it more likely to reproduce them when prompted.
+## Model Validation
+- To catch overfitting early, a portion of the training data is held back and never used for training; this is the validation set. At regular intervals during training, the model is tested on unseen data to check whether its performance is actually generalising or just improving on the training examples it's seen before. If training accuracy keeps climbing but validation accuracy plateaus or drops, that's overfitting in real time.
+
+<img width="1122" height="686" alt="image" src="https://github.com/user-attachments/assets/0a115c5a-bd0d-489b-8a24-b79c0de03348" />
+
+- From a security perspective, validation is the quality gate in the ML lifecycle. A model that skips thorough validation is one whose real-world behaviour is unknown, and such unknown behaviour is a security risk. It also means any biases or anomalies introduced through compromised training data may go undetected until the model is already deployed.
+
+## Post-Training Optimisation: Pruning and Quantisation
+Once a model is trained, it often goes through compression steps before deployment (particularly if it needs to run efficiently on limited hardware). Two of the most common are pruning and quantisation:
+
+| Technique | What it does | Security consideration |
+|---|---|---|
+| **Pruning** | Removes parameters that contribute little to predictions, shrinking model size. | Changes model behaviour post-training; rarely documented in detail. |
+| **Quantisation** | Reduces numerical precision of weights (e.g., from 32-bit to 8-bit) to cut memory and compute requirements. | Can degrade safety-aligned behaviour; backdoor defences tested on full-precision models may fail to detect threats in quantised versions. |
+
+--> Both steps are applied after the training is complete, often by a different third-party team packaging the model for distribution. Research has shown that quantisation can silently degrade the safety mechanisms built into a model; defences that worked on the full-precision version may fail to detect backdoors once the model is compressed. When an organisation downloads a quantised model without documentation of what changed during compression, they're inheriting unknown behaviour modifications alongside efficiency gains.
+
+## Federated Learning
+- All the training approaches covered so far assume that data flows into a single central location for model training. Federated learning flips this: the model is trained across many decentralised devices or organisations, with each participant training locally on their own data and only sending weight updates (not the raw data itself) back to a central server for aggregation.
+- This was designed with privacy in mind. A hospital sharing patient records to train a model is a data protection problem; a hospital contributing model updates without ever sending the records is a much easier conversation. In that sense, federated learning genuinely does reduce privacy risk at the data level.
+
+<img width="1108" height="732" alt="image" src="https://github.com/user-attachments/assets/18bafde2-30c9-4eda-8597-f4fec12a432c" />
+
+= The security trade-off, however, is that the integrity of the training process becomes much harder to verify. In a centralised setup, the organisation that trains the model controls the data. In a federated setup, participants can submit poisoned local updates (subtly manipulated gradients designed to skew the global model's behaviour), and these can be very difficult to detect at the aggregation stage. The question shifts from "who controls the data?" to "who controls the aggregation, and can any participant corrupt it?"
+--> Federated learning is therefore an interesting case study in security trade-offs: it solves one trust problem by distributing control, but in doing so creates a different one.
